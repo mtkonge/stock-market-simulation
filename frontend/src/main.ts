@@ -1,4 +1,3 @@
-import './style.css'
 const currentPriceElement = document.querySelector<HTMLParagraphElement>("#current-price")! 
 const nextIterationButton = document.querySelector<HTMLButtonElement>("#next-iteration")!
 let currentPrice = 1
