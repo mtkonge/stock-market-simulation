@@ -18,7 +18,7 @@ export class Company {
     public name: string;
     public stockPrice: number;
 
-    constructor(name: string, stockPrice: number, id: number,  public profile: AlgoProfile) {
+    constructor(id: number, name: string, stockPrice: number,  public profile: AlgoProfile) {
         this.id = id
         this.name = name
         this.stockPrice = stockPrice

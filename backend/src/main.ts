@@ -2,6 +2,7 @@ import express from "express";
 import { api } from "./api"
 import { MemoryDb } from "./db/MemoryDB";
 import cors from "cors"
+import cookieParser from "cookie-parser";
 
 const port = 8000
 
@@ -10,6 +11,7 @@ function main() {
     
     const db = new MemoryDb()
 
+    app.use(cookieParser())
     app.use(cors())
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
