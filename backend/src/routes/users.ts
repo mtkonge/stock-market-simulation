@@ -12,14 +12,15 @@ export function userApiRoutes(router: Router, db: Database) {
             return res.status(404).json({msg: "Username or password does not exist"})
         }
 
-        if (!!db.getUserByUsername(username))
+        if (!db.getUserByUsername(username)) {
             return res.status(403).json({msg: "User with username already exist"})
+        }
 
         const hashedPassword = await bcrypt.hash(password, 12).then(hash => {return hash})
         
         db.createUser({id: await db.newUserId(), username: username, hashedPassword: hashedPassword})
 
-        return res.status(200).json({msg: "Ok"}).redirect("/login")
+        return res.status(200).json({msg: "Ok"})
     })
 
     router.post("/login", async (req: Request, res: Response) => {
@@ -30,8 +31,9 @@ export function userApiRoutes(router: Router, db: Database) {
         const user = await db.getUserByUsername(username)
 
         if (!user || !(await bcrypt.compare(password, user.hashedPassword))) {
-            return res.status(401).send({msg: "Username or password incorrect"})
+            return res.status(401).json({msg: "Username or password incorrect"})
         }
+
         
         const session = new Session(await db.newSessionId(), user.id)
 
@@ -54,5 +56,7 @@ export function userApiRoutes(router: Router, db: Database) {
         return res.status(200).send({msg: "Ok", user: user})
 
     })
+
+    return router
 
 }

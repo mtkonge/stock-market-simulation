@@ -7,4 +7,6 @@ export function companyApiRoutes(router: Router, db: Database) {
 
         return res.json({ companies: await db.allCompanies()})
     })
+
+    return router
 }

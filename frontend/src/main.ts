@@ -4,7 +4,7 @@ let currentPrice = 1
 
 
 nextIterationButton.addEventListener("click", () => {
-  currentPrice *= 1.0001 + (Math.random() - Math.random())/10
+  currentPrice *= 1.001 + (Math.random() - Math.random())/10
   updatePrice()
 })
 
