@@ -13,4 +13,6 @@ export interface Database {
 
     newSessionId(): Promise<number>
     createSession(session: Session): Promise<Session>
+
+    initialize():  Promise<void>
 }

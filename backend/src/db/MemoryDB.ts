@@ -3,7 +3,7 @@ import { Company } from "../models/Company";
 import { Database } from "./Database";
 import { User } from "../models/User";
 
-export class MemoryDb implements Database {
+export class MemoryDB implements Database {
 
     private nextCompanyId = 0
     private nextUserId = 0
@@ -13,6 +13,10 @@ export class MemoryDb implements Database {
     private sessions: Session[] = []
 
     constructor() {}
+
+    public async initialize(): Promise<void> {
+        
+    }
 
     public async newCompanyId() {
         return this.nextCompanyId++

@@ -1,15 +1,18 @@
 import express from "express";
 import { api } from "./api"
-import { MemoryDb } from "./db/MemoryDB";
+import { MemoryDB } from "./db/MemoryDB";
 import cors from "cors"
 import cookieParser from "cookie-parser";
+import { FileDB } from "./db/FileDB";
+
 
 const port = 8000
 
-function main() {
+async function main() {
     const app = express();
     
-    const db = new MemoryDb()
+    // const db = new MemoryDB()
+    const db = new FileDB()
 
     app.use(cookieParser())
     app.use(cors())
